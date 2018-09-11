@@ -1,0 +1,101 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+        <form   #f="ngForm"  (ngSubmit)="save(f.value)" >
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input #name="ngModel" [(ngModel)]="employee.name"  name="name" id="name" type="text"
+               class="form-control" placeholder="Please Enter Name" required [rangeLength]="[4, 20]">
+               <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+              <div *ngIf="name.errors.required">  Name Is Required</div>
+              <div *ngIf="name.errors.rangeLength">  Name Is Minimum 4 character && Maximum 20 character</div>
+               </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input  #address="ngModel" [(ngModel)]="employee.address"  name="address" id="address" type="text"
+               class="form-control"  placeholder="Please Enter Address" required [rangeLength]="[10, 20]">
+               <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+                  <div *ngIf="address.errors.required">  address Is Required</div>
+              <div *ngIf="address.errors.rangeLength">  address  Minimum 10 character && Maximum 20 character </div>
+                 </div>
+            </div>
+
+            <div class="form-group">
+                <label for="birthdate">birthdate</label>
+                <input  #birthdate="ngModel" [(ngModel)]="employee.birthdate"  name="birthdate" id="birthdate" type="date"
+                 class="form-control"  placeholder="Please Enter birthdate" required maxDate="30000-12-31" >
+                 <div class="alert alert-danger" *ngIf="birthdate.touched && birthdate.invalid">
+                    <div *ngIf="birthdate.errors.required">  birthdate Is Required</div>
+                <div *ngIf="birthdate.errors.maxDate">  Should be like that dd/mm/yyyy</div>
+                   </div>
+              </div>
+
+            <div class="form-group">
+                <label for="email">email</label>
+                <input   #email="ngModel" [(ngModel)]="employee.email"  name="email" id="email" type="email"
+                 class="form-control"  placeholder="name@example.com" required email>
+                 <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                    <div *ngIf="email.errors.required">  email Is Required</div>
+                    <div *ngIf="email.errors.email"> such that name@example.com</div>
+                   </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+              <select  #gender="ngModel"  [(ngModel)]="employee.gender"  name="gender" id="gender" required
+              class="form-control"  >
+              <option value=""  selected>Choose...</option>
+                <option *ngFor="let g of gender$ | async" [value]="g.name">{{g.name}}</option>
+              </select>
+              <div class="alert alert-danger" *ngIf="gender.touched && gender.invalid">
+                  gender Is Required
+                 </div>
+            </div>
+
+      <!--       <div class="form-group">
+                <label for="imageUrl">Image Url</label>
+                <input  #imageUrl="ngModel" [(ngModel)]="employee.imageUrl"  name="imageUrl" id="imageUrl" type="imageUrl"
+                 class="form-control"  placeholder="Please Enter Image" required>
+                 <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+                    imageUrl Is Required
+                   </div>
+            </div> -->
+            <div>
+
+                <button class="uk-button uk-button-default demo"
+                onclick="UIkit.notification({message: 'Add Employee', status: 'success'})"
+                [disabled]="f.invalid">Save</button>
+
+            </div>
+            </form>
+    </div>
+
+    <div class="col-md-6">
+        <div class="uk-card uk-card-default uk-width-1-2@m">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                        <img class="uk-border-circle" width="60" height="100" [src]="employee.imageUrl" *ngIf="employee.imageUrl">
+                    </div>
+                    <div class="uk-width-expand">
+                        <p class="uk-card-title uk-margin-remove-bottom">{{employee.name}} </p>
+                        <p class="uk-text-meta uk-margin-remove-top">{{employee.address}}</p>
+                        <p class="uk-text-meta uk-margin-remove-top">{{employee.birthdate}}</p>
+                        <p class="uk-text-meta uk-margin-remove-top">{{employee.email}}</p>
+                        <p class="uk-text-meta uk-margin-remove-top">{{employee.gender}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-card-footer">
+                <a style="cursor:pointer" class="uk-button uk-button-text">Read more</a>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
