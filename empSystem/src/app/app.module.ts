@@ -17,15 +17,14 @@ import { ModifyComponent } from './employeesList/modify/modify.component';
 import { environment } from '../environments/environment';
 import { EmployeesService } from './employees.service';
 import { GenderService } from './gender.service';
-import { EmpEditComponent } from './emp-edit/emp-edit.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     EmployeesListComponent,
-    ModifyComponent,
-    EmpEditComponent
+    ModifyComponent
   ],
   imports: [
     BrowserModule,
