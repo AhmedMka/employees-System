@@ -25,7 +25,7 @@
 
             <div class="form-group">
                 <label for="birthdate">birthdate</label>
-                <input  #birthdate="ngModel" [(ngModel)]="employee.birthdate"  name="birthdate" id="birthdate" type="date"
+                <input  #birthdate="ngModel" [(ngModel)]="employee.birthdate"  name="birthdate" id="birthdate" type="text"
                  class="form-control"  placeholder="Please Enter birthdate" required maxDate="30000-12-31" >
                  <div class="alert alert-danger" *ngIf="birthdate.touched && birthdate.invalid">
                     <div *ngIf="birthdate.errors.required">  birthdate Is Required</div>
